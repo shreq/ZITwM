@@ -13,11 +13,12 @@ diseases = {'Hepatitis A': 1996,
 
 def prepare_data(disease: str = None) -> pandas.DataFrame:
     df = pandas.read_csv('us_contagious_diseases.csv').drop('Unnamed: 0', axis=1)
+    df = df[~df['state'].isin(['Alaska', 'Hawaii'])]
     if disease is not None:
         df = df[df['disease'] == disease].drop('disease', axis=1)
-    df = df[~df['state'].isin(['Alaska', 'Hawaii'])]
     df['population'] = df['population'].astype('int64')
-    df['per_100k'] = df['count'] / df['population'] * 100_000
+    df['per_100k'] = (df['count'] / df['weeks_reporting'] * 52) / df['population'] * 100_000
+    df['per_100k'].fillna(0, inplace=True)
     return df
 
 
@@ -35,5 +36,49 @@ def plot_disease_rate_per_year(df: pandas.DataFrame,
                  f'{" for " + state if state is not None else ""}')
     pyplot.ylabel('disease rate per 100k')
     pyplot.tight_layout()
-    pyplot.show()
-    pyplot.clf()
+
+
+def plot_histograms(df: pandas.DataFrame):
+    fig, axes = pyplot.subplots(3, 2, sharex='col', sharey='col')
+    binwidth0 = 1000
+    binwidth1 = 5
+    seaborn.histplot(x='count',
+                     data=df[df['year'] == 1950],
+                     binwidth=binwidth0,
+                     ax=axes[0, 0])
+    seaborn.histplot(x='count_sqrt',
+                     data=df[df['year'] == 1950],
+                     binwidth=binwidth1,
+                     ax=axes[0, 1])
+    seaborn.histplot(x='count',
+                     data=df[df['year'] == 1960],
+                     binwidth=binwidth0,
+                     ax=axes[1, 0])
+    seaborn.histplot(x='count_sqrt',
+                     data=df[df['year'] == 1960],
+                     binwidth=binwidth1,
+                     ax=axes[1, 1])
+    seaborn.histplot(x='count',
+                     data=df[df['year'] == 1970],
+                     binwidth=binwidth0,
+                     ax=axes[2, 0])
+    seaborn.histplot(x='count_sqrt',
+                     data=df[df['year'] == 1970],
+                     binwidth=binwidth1,
+                     ax=axes[2, 1])
+    fig.suptitle('Histogram of case counts across the states')
+    axes[0, 0].set_title('1950')
+    axes[0, 0].set_xlabel('')
+    axes[0, 1].set_title('1950')
+    axes[0, 1].set_xlabel('')
+    axes[0, 1].set_ylabel('')
+    axes[1, 0].set_title('1960')
+    axes[1, 0].set_xlabel('')
+    axes[1, 1].set_title('1960')
+    axes[1, 1].set_xlabel('')
+    axes[1, 1].set_ylabel('')
+    axes[2, 0].set_title('1970')
+    axes[2, 1].set_title('1970')
+    axes[2, 1].set_xlabel('square root count')
+    axes[2, 1].set_ylabel('')
+    pyplot.tight_layout()
