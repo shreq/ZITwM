@@ -17,3 +17,10 @@ data['count_sqrt'] = data['count'] ** 0.5
 plot_histograms(data)
 
 pyplot.show()
+
+#4  
+#boxplot
+pyplot.figure(figsize=(20, 40))
+chart=seaborn.boxplot( x=data["year"], y=data["per_100k"] )
+chart.set_xticklabels(chart.get_xticklabels(), rotation=45)
+pyplot.show()
