@@ -24,3 +24,32 @@ pyplot.figure(figsize=(20, 40))
 chart=seaborn.boxplot( x=data["year"], y=data["per_100k"] )
 chart.set_xticklabels(chart.get_xticklabels(), rotation=45)
 pyplot.show()
+
+#5
+#Potwierdzanie hipotezy
+#Szczepionka na Polio masowa zaczela byc uzywana w 1955 roku
+data = prepare_data("Polio")
+seaborn.regplot(x="year", y="per_100k", data=data)
+pyplot.axvline(x = 1955, 
+            linewidth = 2, linestyle ="--", 
+            color ='red') 
+pyplot.show()
+
+#Szczepionka wprowadzona w 1968 a wynaleziona w 1963
+data = prepare_data("Measles")
+seaborn.regplot(x="year", y="per_100k", data=data)
+pyplot.axvline(x = 1968, 
+            linewidth = 2, linestyle ="--", 
+            color ='red') 
+pyplot.show()
+
+#Wprowadzenie szczepionki na Hepatitis A w roku 1995 (USA) w europie w 1991
+data = prepare_data("Hepatitis A")
+seaborn.regplot(x="year", y="per_100k", data=data)
+pyplot.axvline(x = 1995, 
+            linewidth = 2, linestyle ="--", 
+            color ='red') 
+pyplot.show()
+
+
+
