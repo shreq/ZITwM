@@ -82,3 +82,10 @@ def plot_histograms(df: pandas.DataFrame):
     axes[2, 1].set_xlabel('square root count')
     axes[2, 1].set_ylabel('')
     pyplot.tight_layout()
+
+
+def plot_distribution_over_years(df: pandas.DataFrame):
+    pyplot.figure(figsize=[1.5 * x for x in pyplot.rcParams.get('figure.figsize')])
+    seaborn.boxplot(x=df["year"], y=df["per_100k"])
+    pyplot.xticks(rotation=90, fontsize=8)
+    pyplot.tight_layout()
