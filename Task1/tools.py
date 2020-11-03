@@ -43,37 +43,30 @@ def plot_histograms(df: pandas.DataFrame):
     binwidth0 = 1000
     binwidth1 = 5
     df1 = df.groupby(['year', 'state'])['count'].sum().reset_index()
-    print(df1[df1['year'] == 1950])
-    seaborn.histplot(x='state',
-                     y='count',
-                     data=df1[df1['year'] == 1950],
-                     binwidth=binwidth0,
-                     ax=axes[0, 0])
-    seaborn.histplot(x='state',
-                     y='count',
-                     data=df1[df1['year'] == 1950],
-                     binwidth=binwidth1,
-                     ax=axes[0, 1])
-    seaborn.histplot(x='state',
-                     y='count',
-                     data=df1[df1['year'] == 1960],
-                     binwidth=binwidth0,
-                     ax=axes[1, 0])
-    seaborn.histplot(x='state',
-                     y='count',
-                     data=df1[df1['year'] == 1960],
-                     binwidth=binwidth1,
-                     ax=axes[1, 1])
-    seaborn.histplot(x='state',
-                     y='count',
-                     data=df1[df1['year'] == 1970],
-                     binwidth=binwidth0,
-                     ax=axes[2, 0])
-    seaborn.histplot(x='state',
-                     y='count',
-                     data=df1[df1['year'] == 1970],
-                     binwidth=binwidth1,
-                     ax=axes[2, 1])
+    seaborn.barplot(x='state',
+                    y='count',
+                    data=df1[df1['year'] == 1950],
+                    ax=axes[0, 0])
+    seaborn.barplot(x='state',
+                    y='count',
+                    data=df1[df1['year'] == 1950],
+                    ax=axes[0, 1])
+    seaborn.barplot(x='state',
+                    y='count',
+                    data=df1[df1['year'] == 1960],
+                    ax=axes[1, 0])
+    seaborn.barplot(x='state',
+                    y='count',
+                    data=df1[df1['year'] == 1960],
+                    ax=axes[1, 1])
+    seaborn.barplot(x='state',
+                    y='count',
+                    data=df1[df1['year'] == 1970],
+                    ax=axes[2, 0])
+    seaborn.barplot(x='state',
+                    y='count',
+                    data=df1[df1['year'] == 1970],
+                    ax=axes[2, 1])
     fig.suptitle('Histogram of case counts across the states')
     axes[0, 0].set_title('1950')
     axes[0, 0].set_xlabel('')
@@ -89,6 +82,8 @@ def plot_histograms(df: pandas.DataFrame):
     axes[2, 1].set_title('1970')
     axes[2, 1].set_xlabel('square root count')
     axes[2, 1].set_ylabel('')
+    axes[2, 0].tick_params(labelrotation=90)
+    axes[2, 1].tick_params(labelrotation=90)
     pyplot.tight_layout()
 
 
