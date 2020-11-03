@@ -19,9 +19,9 @@ plot_histograms(data)
 plot_distribution_over_years(data)
 pyplot.show()
 
-#5
-#Potwierdzanie hipotezy
-#Szczepionka na Polio masowa zaczela byc uzywana w 1955 roku
+# 5
+# Potwierdzanie hipotezy
+# Szczepionka na Polio masowa zaczela byc używana w 1955 roku
 data = prepare_data("Polio")
 seaborn.regplot(x="year", y="per_100k", data=data)
 pyplot.axvline(x=1955,
@@ -29,7 +29,7 @@ pyplot.axvline(x=1955,
                color='red')
 pyplot.show()
 
-#Szczepionka wprowadzona w 1968 a wynaleziona w 1963
+# Szczepionka wprowadzona w 1968 a wynaleziona w 1963
 data = prepare_data("Measles")
 seaborn.regplot(x="year", y="per_100k", data=data)
 pyplot.axvline(x=1968,
@@ -37,7 +37,7 @@ pyplot.axvline(x=1968,
                color='red')
 pyplot.show()
 
-#Wprowadzenie szczepionki na Hepatitis A w roku 1995 (USA) w europie w 1991
+# Wprowadzenie szczepionki na Hepatitis A w roku 1995 (USA) w europie w 1991
 data = prepare_data("Hepatitis A")
 seaborn.regplot(x="year", y="per_100k", data=data)
 pyplot.axvline(x=1995,
