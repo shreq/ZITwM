@@ -94,7 +94,7 @@ def plot_distribution_over_years(df: pandas.DataFrame):
 
 def plot_heatmap(df: pandas.DataFrame, disease: str):
     heat_df = df.groupby(['state', 'year'])['count'].sum().unstack()
-    xd = seaborn.heatmap(heat_df, cmap='Blues')
+    plot = seaborn.heatmap(heat_df, cmap='Blues', yticklabels=True)
     vaccine_year_index = heat_df.columns.to_list().index(diseases[disease])
-    xd.axvline(vaccine_year_index, color='g')
+    plot.axvline(vaccine_year_index, color='g')
     pyplot.tight_layout()
