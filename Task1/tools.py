@@ -40,15 +40,13 @@ def plot_disease_rate_per_year(df: pandas.DataFrame,
 
 def plot_histograms(df: pandas.DataFrame):
     fig, axes = pyplot.subplots(3, 2, sharex='col', sharey='col')
-    binwidth0 = 1000
-    binwidth1 = 5
-    df1 = df.groupby(['year', 'state'])['count'].sum().reset_index()
+    df1 = df.groupby(['year', 'state']).sum().reset_index()
     seaborn.barplot(x='state',
                     y='count',
                     data=df1[df1['year'] == 1950],
                     ax=axes[0, 0])
     seaborn.barplot(x='state',
-                    y='count',
+                    y='count_sqrt',
                     data=df1[df1['year'] == 1950],
                     ax=axes[0, 1])
     seaborn.barplot(x='state',
@@ -56,7 +54,7 @@ def plot_histograms(df: pandas.DataFrame):
                     data=df1[df1['year'] == 1960],
                     ax=axes[1, 0])
     seaborn.barplot(x='state',
-                    y='count',
+                    y='count_sqrt',
                     data=df1[df1['year'] == 1960],
                     ax=axes[1, 1])
     seaborn.barplot(x='state',
@@ -64,7 +62,7 @@ def plot_histograms(df: pandas.DataFrame):
                     data=df1[df1['year'] == 1970],
                     ax=axes[2, 0])
     seaborn.barplot(x='state',
-                    y='count',
+                    y='count_sqrt',
                     data=df1[df1['year'] == 1970],
                     ax=axes[2, 1])
     fig.suptitle('Histogram of case counts across the states')
