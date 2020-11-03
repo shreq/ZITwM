@@ -90,3 +90,11 @@ def plot_distribution_over_years(df: pandas.DataFrame):
     seaborn.boxplot(x=df["year"], y=df["per_100k"])
     pyplot.xticks(rotation=90, fontsize=8)
     pyplot.tight_layout()
+
+
+def plot_heatmap(df: pandas.DataFrame, disease: str):
+    heat_df = df.groupby(['state', 'year'])['count'].sum().unstack()
+    xd = seaborn.heatmap(heat_df, cmap='Blues')
+    vaccine_year_index = heat_df.columns.to_list().index(diseases[disease])
+    xd.axvline(vaccine_year_index, color='g')
+    pyplot.tight_layout()

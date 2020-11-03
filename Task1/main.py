@@ -18,6 +18,8 @@ plot_histograms(data)
 # Step #4
 plot_distribution_over_years(data)
 pyplot.show()
+plot_heatmap(data, disease_choice)
+pyplot.show()
 
 # 5
 # Potwierdzanie hipotezy
