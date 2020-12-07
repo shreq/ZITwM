@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+
 def mortality_rate(df):
     return df.mort.value_counts(normalize=True)[1] * 100
 
@@ -23,3 +27,15 @@ def one_twin_lbw(df):
 
 def print_mortality(prefix, mortality):
     print(f'{prefix} mortality rate: {mortality:.2f}%')
+
+
+def plot_linear_regression(x, y, model):
+    plt.scatter(x, y, color='black')
+
+    y_line = model.coef_[0] * x + model.intercept_
+
+    plt.plot(x, y_line, color='blue', linewidth=2)
+    plt.title('Linear regression')
+    plt.xlabel('Body weight [g]')
+    plt.ylabel('Mother smokes (1 - yes, 0 - no)')
+    plt.show()

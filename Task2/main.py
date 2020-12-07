@@ -23,3 +23,12 @@ singletons = pd.read_csv('singletons.txt')
 
 print_mortality('Twins', mortality_rate(twins))
 print_mortality('Singletons', mortality_rate(singletons))
+
+################# Part 2
+
+x = singletons.dbirwt.values.reshape(-1, 1)
+y = singletons.tobacco.values.reshape(-1, 1)
+
+model = LinearRegression().fit(x, y)
+
+plot_linear_regression(x, y, model)
