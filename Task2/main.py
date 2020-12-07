@@ -1,6 +1,6 @@
 import pandas as pd
 from utils import *
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, LogisticRegression
 
 
 ################# Part 2.1
@@ -27,8 +27,10 @@ print_mortality('Singletons', mortality_rate(singletons))
 ################# Part 2
 
 x = singletons.dbirwt.values.reshape(-1, 1)
-y = singletons.tobacco.values.reshape(-1, 1)
+y = singletons.tobacco
 
-model = LinearRegression().fit(x, y)
+linear = LinearRegression().fit(x, y)
+logistic = LogisticRegression(solver='liblinear', random_state=0).fit(x, y)
 
-plot_linear_regression(x, y, model)
+plot_linear_regression(x, y, linear)
+plot_logistic_regression(x, y, logistic)
