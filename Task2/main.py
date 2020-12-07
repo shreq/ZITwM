@@ -2,7 +2,6 @@ import pandas as pd
 from utils import *
 from sklearn.linear_model import LinearRegression, LogisticRegression
 
-
 ################# Part 2.1
 
 LBW_THRESHOLD = 2700
@@ -16,13 +15,15 @@ twins = twins[twins.one_twin_lbw]
 
 print_mortality('Twin with low body weight', mortality_rate_lbw(twins, lbw=True))
 print_mortality('Twin without low body weight', mortality_rate_lbw(twins, lbw=False))
-
+print_mortality('Twins overall', mortality_rate(twins))
 print()
 
 singletons = pd.read_csv('singletons.txt')
+singletons['lbw'] = is_lbw(singletons, LBW_THRESHOLD)
 
-print_mortality('Twins', mortality_rate(twins))
-print_mortality('Singletons', mortality_rate(singletons))
+print_mortality('Singletons with low body weight', mortality_rate_lbw(singletons, lbw=True))
+print_mortality('Singletons without low body weight', mortality_rate_lbw(singletons, lbw=False))
+print_mortality('Singletons overal', mortality_rate(singletons))
 
 ################# Part 2
 
