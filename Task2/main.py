@@ -1,10 +1,12 @@
 import pandas as pd
 from utils import *
 from sklearn.linear_model import LinearRegression, LogisticRegression
+from scipy.stats import chisquare
 
 ################# Part 2.1
 
 LBW_THRESHOLD = 2700
+ALPHA = 0.05
 
 twins = pd.read_csv('twins.txt')
 
@@ -24,6 +26,16 @@ singletons['lbw'] = is_lbw(singletons, LBW_THRESHOLD)
 print_mortality('Singletons with low body weight', mortality_rate_lbw(singletons, lbw=True))
 print_mortality('Singletons without low body weight', mortality_rate_lbw(singletons, lbw=False))
 print_mortality('Singletons overal', mortality_rate(singletons))
+
+twins_value_counts = twins.mort.value_counts(normalize=True)
+singletons_value_counts = singletons.mort.value_counts(normalize=True)
+
+stat, p = chisquare(singletons_value_counts, twins_value_counts)
+
+print()
+print('Chi-square statistic: ', stat)
+print('P-value: ', p)
+print('Hypothesis H0 rejected' if p < ALPHA else 'Cannot reject hypothesis H0')
 
 ################# Part 2
 
