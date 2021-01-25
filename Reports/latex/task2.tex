@@ -48,7 +48,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Cel
 \section{Cel}
 Celem było zbadanie hipotezy: \textit{„Czy niska waga urodzeniowa naprawdę zmniejsza szanse na przeżycie dziecka powyżej jego pierwszych urodzin?”}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPIS IMPLEMENTACJI
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Opis implementacji
 \section{Opis implementacji}
     Algorytmy oraz przygotowane do nich testy zostały zaimplementowane za pomocą języka Python w wersji 3.8.2.
     Wykorzystano w nim biblioteki \textit{NumPy}, \textit{Sklearn}, \textit{Pandas} i \textit{Seaborn}.
@@ -71,7 +72,25 @@ Celem było zbadanie hipotezy: \textit{„Czy niska waga urodzeniowa naprawdę z
                 Całkowity śmiertelność ciąży pojedynczej                         & 0.50 \%               \\ \hline
             \end{tabular}
         \end{table}
-
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      
+    \subsubsection{Chi-kwadrat}
+    
+    Test chi-kwadrat używany jest między innymi do porównania ze sobą równoliczności kategorii dwóch rozkładów. Test wykorzystaliśmy do sprawdzenia równoliczności śmiertelności noworodków dla bliźniaków i jedynaków. Za hipotezę zerową przyjęliśmy, że liczebności są takie same:
+    
+    \begin{table}[H]
+    \centering
+    \caption{Błąd chi-kwadrat}
+    \label{tab:error}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Chi-square statistic:} & 0.012977839125984913 \\ \hline
+    \textbf{P-value:} & 0.9093009580356936 \\ \hline
+    \end{tabular}
+    \end{table}
+    
+    Na podstawie wartości parametru \textit{p} nie jesteśmy w stanie odrzucić hipotezy.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsection{Wpływ palenia u matki na wagę dziecka}
         \begin{figure}[H]
             \centering
@@ -92,6 +111,7 @@ Celem było zbadanie hipotezy: \textit{„Czy niska waga urodzeniowa naprawdę z
 \section{Wnioski}
 
     \begin{itemize}
+       
         \item Skupienie się na ciążach bliźniaczych wynika z chęci minimalizacji różnic środowiskowych już w trakcie życia bliźniąt.
         \item Powyższe badanie wskazuje, że palenie u matki ma wpływ na wagę urodzeniową dziecka. Dziecko rodzi się z mniejszą wagą.
         \item Niedowaga w ciąży bliźniaczej ma większy wpływ na śmiertelność niż w ciąży pojedynczej.
